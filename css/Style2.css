@@ -1,0 +1,368 @@
+/******************************
+    * Оглавление
+    * 1. Header
+    * 2. Timetable
+    * 3. Buttons
+    * 4. Other
+ ******************************/
+
+body {
+    padding: 0;
+    margin: 0;
+    font: normal normal 16px/1.48 "Myriad Pro", Arial, sans-serif;
+    color: #333333;
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*********************
+|		1.HEADER
+*********************/
+
+.main-header {
+    margin: -16px 0 0 0;
+    background: #E61400;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .3);
+    text-align: center;
+    min-height: 50px;
+
+}
+
+.logo {
+    padding: 0;
+    margin: 7px 0 7px 10px;
+    text-decoration: none;
+    font-size: 26px;
+    color: #fff;
+    float: left;
+    font-stretch: ultra-condensed;
+}
+
+.main-menu > li {
+    display: inline-block;
+    border-right: 1px solid #ffebee;
+}
+
+.main-menu > li:first-child {
+    border-left: 1px solid #ffebee;
+}
+
+.main-menu > li > a {
+    display: block;
+    padding: 15px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.main-menu > li > a:hover {
+    color: #ffebee;
+}
+
+/*********************
+|	  2.TIMETABLE
+*********************/
+
+.group-block {
+    max-width: 900px;
+    display: block;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.lesson-date {
+    float: left;
+    max-width: 90px;
+    text-align: right;
+}
+
+.day-block {
+    margin-left: 110px;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
+}
+
+.ended {
+    height: 100%;
+    background: url(../img/line_pattern.png);
+    background-color: #F5F5F5;
+}
+
+.ended p {
+    margin: 0;
+}
+
+.lesson-block {
+    padding: 5px 0 0 20px;
+    list-style: none;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
+}
+
+.lesson-block + .lesson-block {
+    border-top: solid 1px #e5e5e5;
+}
+
+.lesson-time {
+    font-style: italic;
+    font-size: 14px;
+    float: left;
+    padding-top: 2px;
+    margin-right: 10px;
+    width: 80px;
+    text-align: right;
+    color: #7e7e7e;
+}
+
+.lesson-info {
+    font-size: 14px;
+    margin-left: 90px;
+    color: #7e7e7e;
+}
+
+.lesson-info .btn {
+    float: right;
+    padding: 7px 15px;
+    margin: 1px;
+    text-decoration: none;
+    color: #424242;
+    text-align: center;
+    border: 1px solid #ffcdd2;
+    border-radius: 3px;
+    background: #fff;
+}
+
+.lesson-info .btn:hover {
+    border: 1px solid #E61400;
+    transition: 0.2s ease-in;
+    color: #000;
+}
+
+.lesson-subject {
+    font-size: 18px;
+    line-height: 24px;
+    color: #0054B9;
+    text-decoration: none;
+}
+
+.lesson-subject:hover {
+    color: #E61400;
+    transition: 0.1s ease-in;
+}
+
+.lesson-school, .lesson-teacher {
+    margin: 5px;
+}
+
+.lesson-place {
+    margin: 0 5px;
+    padding-bottom: 5px;
+}
+
+/*********************
+|	  3.BUTTONS
+*********************/
+
+[class^='day-block'] .button {
+    float: right;
+    margin: -30px 5px 5px 0;
+
+}
+
+button[id^='moderate-create'] {
+    margin: 0 20px;
+    padding: 5px 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    background: #fff;
+}
+
+button[id^='moderate-create']:hover {
+    border: 1px solid #7e7e7e;
+    transition: 0.2s ease-in;
+    color: #000;
+}
+
+.fa-plus {
+    color: #212121;
+}
+
+#moderate-create-timetable {
+    margin-left: 10px;
+}
+
+#moderate-create-classrooms {
+    margin-left: 5px;
+}
+
+.filter-label {
+    margin-left: 20px;
+}
+
+button[id^='filter'] {
+    margin: 5px;
+    padding: 5px 8px;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    background: #fff;
+}
+
+button[id^='filter']:hover {
+    border: 1px solid #7e7e7e;
+    transition: 0.2s ease-in;
+    color: #000;
+}
+
+button[id^='delete-'] {
+    margin: 0;
+    padding: 5px 15px;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    background: #fff;
+}
+
+button[id^='delete-']:hover {
+    border: 1px solid #7e7e7e;
+    transition: 0.2s ease-in;
+    color: #000;
+}
+
+button[id^='edit-timetable'], button[id^='edit-lectures'], button[id^='edit-schools'], button[id^='edit-classrooms'] {
+    margin: 0 0 0 5px;
+    padding: 5px 10px;
+    text-align: center;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    background: #fff;
+}
+
+button[id^='edit-']:hover {
+    border: 1px solid #7e7e7e;
+    transition: 0.2s ease-in;
+    color: #000;
+}
+
+#save-new-timetable, #save-edited-timetable, #save-new-lecture, #edit-lecture, #save-new-student, #save-schools, #save-new-classroom, #save-classroom {
+    margin: 0 0 0 5px;
+    padding: 5px 10px;
+    text-align: center;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    background: #fff;
+}
+
+#save-new-timetable:hover, #save-edited-timetable:hover, #save-new-lecture:hover, #edit-lecture:hover, #save-new-student:hover,
+#save-schools:hover, #save-new-classroom:hover, #save-classroom:hover {
+    border: 1px solid #7e7e7e;
+    transition: 0.2s ease-in;
+    color: #000;
+}
+
+/*********************
+|	  4.OTHER
+*********************/
+
+/*Блоки на других вкладках*/
+
+[class^='day-block'] {
+    margin-left: 120px;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+}
+
+.schoolName {
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.container-info {
+    display: table;
+    margin: 10px 0 10px 20px;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    padding: 10px;
+    max-width: 900px;
+}
+
+.classroom-info, .school-info {
+    padding: 10px;
+}
+
+/*Фильтры по датам*/
+
+.filter {
+    padding: 5px;
+    margin: 0 0 0 20px;
+    max-width: 200px;
+    float: left;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+}
+
+.filter input {
+    margin: 5px;
+}
+
+.filter label {
+    margin-left: 5px;
+}
+
+.filter p {
+    margin: 5px;
+}
+
+.row:before, .row:after {
+    content: "";
+    display: table;
+}
+
+.row:after {
+    clear: both;
+}
+
+.none {
+    display: none;
+}
+
+/*Всплывающие окна*/
+.back {
+    display: none;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background: #000;
+}
+
+.popup {
+    padding: 10px;
+    display: none;
+    width: 700px;
+    height: 350px;
+    z-index: 20;
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    margin-left: -352px;
+    overflow-y: auto;
+    color: #000;
+    background-color: #fff;
+    border: 3px solid #e5e5e5;
+    border-radius: 5px;
+}
+
+div.close {
+    position: absolute;
+    right: 8px;
+    top: 0px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    font-weight: bold;
+}
+
+div.content {
+    padding: 0px 15px 0px 15px;
+}
