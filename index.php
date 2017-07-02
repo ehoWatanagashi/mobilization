@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/Style2.css?4422213">
-
+    <link rel="stylesheet" href="css/Style2.css?4522213">
 </head>
 <body>
 <?php
@@ -26,6 +25,13 @@ function get($file)
 function put($file, $value)
 {
     return file_put_contents("$file", json_encode($value));
+}
+
+/*Очищаем сессию, если вызвали переменную "exit"*/
+if (isset($_GET['exit'])) {
+    unset($_SESSION['password']);
+    unset($_SESSION['login']);
+    unset($_SESSION['id']);
 }
 
 /*Добавление новой школы*/
@@ -101,7 +107,8 @@ if (isset($_GET['lecture-name'])) {
 
 if (isset($_GET['date-timetable'])) {
     $TTDate = htmlspecialchars($_GET['date-timetable']);
-    $TTTime = htmlspecialchars($_GET['time-timetable']);
+    $TTTime1 = htmlspecialchars($_GET['time-timetable1']);
+    $TTTime2 = htmlspecialchars($_GET['time-timetable2']);
     $TTLecture = htmlspecialchars($_GET['lecture-timetable']);
     $TTSchool = $_GET['school-timetable'];
     $TTTeacher = htmlspecialchars($_GET['teacher-timetable']);
@@ -129,7 +136,8 @@ if (isset($_GET['date-timetable'])) {
     $file = "timetable.json";
     $jsonTimetable = get($file);
     $jsonTimetable[$TTDate][] = [
-        'time' => "$TTTime",
+        'time' => "$TTTime1",
+        'time2' => "$TTTime2",
         'name' => "$TTLecture",
         'school' => "$TTSchool",
         'teacher' => "$TTTeacher",
@@ -264,8 +272,9 @@ if (isset($_GET['edit-school-name'])) {
 
 
 /*Редактирование  расписания*/
-if (isset($_GET['edit-time-timetable'])) {
-    $TTEditTime = htmlspecialchars($_GET['edit-time-timetable']);
+if (isset($_GET['edit-time-timetable1'])) {
+    $TTEditTime1 = htmlspecialchars($_GET['edit-time-timetable1']);
+    $TTEditTime2 = htmlspecialchars($_GET['edit-time-timetable2']);
     $TTEditLecture = htmlspecialchars($_GET['edit-lecture-timetable']);
     $TTEditSchool = $_GET['edit-school-timetable'];
     $TTEditTeacher = htmlspecialchars($_GET['edit-teacher-timetable']);
@@ -294,7 +303,8 @@ if (isset($_GET['edit-time-timetable'])) {
     $file = "timetable.json";
     $jsonTTEdit = get($file);
     $jsonTTEdit[$TTEeditDate][$TTEditIndex2] = [
-        'time' => "$TTEditTime",
+        'time' => "$TTEditTime1",
+        'time2' => "$TTEditTime2",
         'name' => "$TTEditLecture",
         'school' => "$TTEditSchool",
         'teacher' => "$TTEditTeacher",
@@ -335,147 +345,18 @@ if (isset($_GET['edit-lecture-school'])) {
 
 <header class="main-header">
     <div class="header-top">
-        <a class="logo" href="https://www.yandex.ru/">Яндекс</a>
+        <a class="logo" href="index.html">Мобилизация</a>
         <nav class="main-nav">
             <ul class="main-menu">
-                <li><a href="#page-timetable">Образец</a></li>
                 <li><a href="#page-edit-timetable">Расписание</a></li>
                 <li><a href="#page-lectures">Лекции</a></li>
                 <li><a href="#page-schools">Школы</a></li>
                 <li><a href="#page-classrooms">Аудитории</a></li>
+                <div class="exit"><a href="login.php?exit">Выход</a></div>
             </ul>
         </nav>
     </div>
 </header>
-<div class="container page none" id="page-timetable">
-    <div class="group-block">
-        <div class="lesson-date">
-            10 апр., пн
-        </div>
-        <div class="day-block">
-            <div class="lesson-block ended">
-                <span class="lesson-time">18:00-21:00</span>
-                <div class="lesson-info">
-                    <a href="#" class="btn">Смотреть</a>
-                    <a href="#" class="lesson-subject">Лекция 1. Адаптивная вёрстка</a>
-                    <p class="lesson-school">Школа разработки интерфейсов;<span
-                            class="lesson-teacher">Дмитрий Душкин</span></p>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="group-block">
-        <div class="lesson-date">
-            11 апр., вт
-        </div>
-        <div class="day-block ended">
-            <div class="lesson-block">
-                <span class="lesson-time">18:00-21:00</span>
-                <div class="lesson-info">
-                    <a href="#" class="btn">Смотреть</a>
-                    <a href="#" class="lesson-subject">Лекция 2. Работа с сенсорным пользовательским вводом</a>
-                    <p class="lesson-school">Школа разработки интерфейсов;<span
-                            class="lesson-teacher">Дмитрий Душкин</span></p>
-                </div>
-            </div>
-
-            <div class="lesson-block">
-                <span class="lesson-time">18:00-21:00</span>
-                <div class="lesson-info">
-                    <a href="#" class="btn">Смотреть</a>
-                    <a href="#" class="lesson-subject">Лекция 1. Java Blitz (Часть 1)</a>
-                    <p class="lesson-school">Школа мобильной разработки;<span
-                            class="lesson-teacher">Эдуард Мацуков</span></p>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <div class="group-block">
-        <div class="lesson-date">
-            14 апр., пт
-        </div>
-        <div class="day-block">
-            <div class="lesson-block">
-                <span class="lesson-time">18:00-21:00</span>
-                <div class="lesson-info">
-                    <a href="#" class="lesson-subject">Лекция 1. Идея, исследование, концепт (Часть 1)</a>
-                    <p class="lesson-school">Школа мобильного дизайна</p>
-                    <p class="lesson-teacher">Антон Тен</p>
-                    <p class="lesson-place">ул. Льва Толстого, д. 14, ауд. 42</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="group-block">
-        <div class="lesson-date">
-            17 апр., пн
-        </div>
-        <div class="day-block">
-            <div class="lesson-block">
-                <span class="lesson-time">18:00-21:00</span>
-                <div class="lesson-info">
-                    <a href="#" class="lesson-subject">Лекция 2.Git & Workflow</a>
-                    <p class="lesson-school">Школа мобильной разработки</p>
-                    <p class="lesson-teacher">Максим Васильев</p>
-                    <p class="lesson-place">ул. Льва Толстого, д. 16, ауд. 214</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="group-block">
-        <div class="lesson-date">
-            18 апр., вт
-        </div>
-        <div class="day-block">
-            <div class="lesson-block">
-                <span class="lesson-time">18:00-21:00</span>
-                <div class="lesson-info">
-                    <a href="#" class="lesson-subject">Лекция 3. Мультимедиа: возможности браузера</a>
-                    <p class="lesson-school">Школа мобильной разработки, Школа разработки интерфейсов</p>
-                    <p class="lesson-teacher">Дмитрий Складнов</p>
-                    <p class="lesson-place">ул. Льва Толстого, д. 16, ауд. 242</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="group-block">
-        <div class="lesson-date">
-            20 апр., чт
-        </div>
-        <div class="day-block">
-            <div class="lesson-block">
-                <span class="lesson-time">18:00-21:00</span>
-                <div class="lesson-info">
-                    <a href="#" class="lesson-subject">Лекция 2. Идея, исследование, концепт (Часть 2)</a>
-                    <p class="lesson-school">Школа мобильного дизайна</p>
-                    <p class="lesson-teacher">Антон Тен</p>
-                    <p class="lesson-place">ул. Льва Толстого, д. 14, ауд. 29</p>
-                </div>
-            </div>
-            <div class="lesson-block">
-                <span class="lesson-time">18:00-21:00</span>
-                <div class="lesson-info">
-                    <a href="#" class="lesson-subject">Лекция 4. Java Blitz (Часть 2)</a>
-                    <p class="lesson-school">Школа мобильной разработки</p>
-                    <p class="lesson-teacher">Дмитрий Складнов</p>
-                    <p class="lesson-place">ул. Льва Толстого, д. 16, ауд. 242</p>
-                </div>
-            </div>
-            <div class="lesson-block">
-                <span class="lesson-time">18:00-21:00</span>
-                <div class="lesson-info">
-                    <a href="#" class="lesson-subject">Лекция 4. Особенности проектирования мобильных интерфейсов</a>
-                    <p class="lesson-school">Школа разработки интерфейсов</p>
-                    <p class="lesson-teacher">Васюнин Николай</p>
-                    <p class="lesson-place">ул. Льва Толстого, д. 16, ауд. 212</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <div class="back"></div>
 <div class="container page none" id="page-edit-timetable">
     <div class="row">
@@ -503,8 +384,12 @@ if (isset($_GET['edit-lecture-school'])) {
                     <input type="date" id="date-timetable" name="date-timetable" required><br>
                 </div>
                 <div class="form-group">
-                    <label for="time-timetable">Время проведения</label>
-                    <input type="time" id="time-timetable" name="time-timetable" required><br>
+                    <label for="time-timetable1">Время начала</label>
+                    <input type="time" id="time-timetable1" name="time-timetable1" required><br>
+                </div>
+                <div class="form-group">
+                    <label for="time-timetable2">Время окончания</label>
+                    <input type="time" id="time-timetable2" name="time-timetable2" required><br>
                 </div>
                 <div class="form-group">
                     <label for="lecture-timetable">Название леции</label>
@@ -536,8 +421,12 @@ if (isset($_GET['edit-lecture-school'])) {
         <div class="close"><i class="fa fa-times fa-2x"></i></div>
         <div class="form-group">
             <div class="form-group">
-                <label for="edit-time-timetable">Время проведения</label>
-                <input type="time" id="edit-time-timetable" name="edit-time-timetable" required><br>
+                <label for="edit-time-timetable1">Время начала</label>
+                <input type="time" id="edit-time-timetable1" name="edit-time-timetable1" required><br>
+            </div>
+            <div class="form-group">
+                <label for="edit-time-timetable2">Время окончания</label>
+                <input type="time" id="edit-time-timetable2" name="edit-time-timetable2" required><br>
             </div>
             <div class="form-group">
                 <label for="edit-lecture-timetable">Название леции</label>
@@ -712,6 +601,6 @@ if (isset($_GET['edit-lecture-school'])) {
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="edit.js"></script>
+<script src="edit2.js"></script>
 </body>
 </html>

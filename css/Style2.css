@@ -40,12 +40,9 @@ body {
 
 .main-menu > li {
     display: inline-block;
-    border-right: 1px solid #ffebee;
+
 }
 
-.main-menu > li:first-child {
-    border-left: 1px solid #ffebee;
-}
 
 .main-menu > li > a {
     display: block;
@@ -93,7 +90,7 @@ body {
 }
 
 .lesson-block {
-    padding: 5px 0 0 20px;
+    padding: 5px 0 0 0px;
     list-style: none;
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.16);
 }
@@ -107,15 +104,15 @@ body {
     font-size: 14px;
     float: left;
     padding-top: 2px;
-    margin-right: 10px;
-    width: 80px;
+    margin-right: 7px;
+    width: 95px;
     text-align: right;
     color: #7e7e7e;
 }
 
 .lesson-info {
     font-size: 14px;
-    margin-left: 90px;
+    margin-left: 100px;
     color: #7e7e7e;
 }
 
@@ -142,6 +139,7 @@ body {
     line-height: 24px;
     color: #0054B9;
     text-decoration: none;
+    margin-left: 3px;
 }
 
 .lesson-subject:hover {
@@ -162,6 +160,20 @@ body {
 |	  3.BUTTONS
 *********************/
 
+.exit{
+    padding: 15px;
+    display: inline;
+    float: right;
+}
+.exit a{
+    color: #fff;
+    text-decoration: none;
+}
+.exit a:hover{
+    color: #ffebee;
+}
+
+
 [class^='day-block'] .button {
     float: right;
     margin: -30px 5px 5px 0;
@@ -180,6 +192,7 @@ button[id^='moderate-create']:hover {
     border: 1px solid #7e7e7e;
     transition: 0.2s ease-in;
     color: #000;
+    cursor: pointer;
 }
 
 .fa-plus {
@@ -187,7 +200,7 @@ button[id^='moderate-create']:hover {
 }
 
 #moderate-create-timetable {
-    margin-left: 10px;
+    margin-left: 30px;
 }
 
 #moderate-create-classrooms {
@@ -198,7 +211,7 @@ button[id^='moderate-create']:hover {
     margin-left: 20px;
 }
 
-button[id^='filter'] {
+button[id^='filter'],.AuthButton {
     margin: 5px;
     padding: 5px 8px;
     border: 1px solid #e5e5e5;
@@ -206,11 +219,18 @@ button[id^='filter'] {
     background: #fff;
 }
 
-button[id^='filter']:hover {
+button[id^='filter']:hover, .AuthButton:hover {
     border: 1px solid #7e7e7e;
     transition: 0.2s ease-in;
     color: #000;
+    cursor: pointer;
 }
+
+.AuthButton{
+    display: block;
+    margin: 5px auto;
+}
+
 
 button[id^='delete-'] {
     margin: 0;
@@ -224,6 +244,7 @@ button[id^='delete-']:hover {
     border: 1px solid #7e7e7e;
     transition: 0.2s ease-in;
     color: #000;
+    cursor: pointer;
 }
 
 button[id^='edit-timetable'], button[id^='edit-lectures'], button[id^='edit-schools'], button[id^='edit-classrooms'] {
@@ -239,6 +260,7 @@ button[id^='edit-']:hover {
     border: 1px solid #7e7e7e;
     transition: 0.2s ease-in;
     color: #000;
+    cursor: pointer;
 }
 
 #save-new-timetable, #save-edited-timetable, #save-new-lecture, #edit-lecture, #save-new-student, #save-schools, #save-new-classroom, #save-classroom {
@@ -255,6 +277,7 @@ button[id^='edit-']:hover {
     border: 1px solid #7e7e7e;
     transition: 0.2s ease-in;
     color: #000;
+    cursor: pointer;
 }
 
 /*********************
@@ -288,6 +311,29 @@ button[id^='edit-']:hover {
     padding: 10px;
 }
 
+/*Формы регистрации и авторизации*/
+
+.auth{
+    display: block;
+    padding: 5px;
+    max-width: 200px;
+    border: 1px solid #e5e5e5;
+    border-radius: 3px;
+    margin: 10px auto;
+}
+
+.auth .authInput {
+    margin: 5px;
+}
+
+.auth p {
+    margin: 5px;
+}
+
+.auth label {
+    margin-left: 5px;
+}
+
 /*Фильтры по датам*/
 
 .filter {
@@ -298,6 +344,7 @@ button[id^='edit-']:hover {
     border: 1px solid #e5e5e5;
     border-radius: 3px;
 }
+
 
 .filter input {
     margin: 5px;
